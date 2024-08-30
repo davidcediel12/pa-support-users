@@ -3,6 +3,7 @@ package com.per.adoption.support.users.dto;
 import lombok.*;
 
 import java.time.OffsetDateTime;
+import java.util.UUID;
 
 
 @NoArgsConstructor
@@ -12,5 +13,7 @@ import java.time.OffsetDateTime;
 @Setter
 public class CreatedUser {
     private Long id;
+    private UUID userId;
+
     private OffsetDateTime createdAt;
 }
