@@ -29,11 +29,13 @@ public class User {
     private OffsetDateTime createdAt;
     @CreationTimestamp
     private OffsetDateTime updatedAt;
-    @Column(nullable = false, updatable = false)
+    @Column(name = "user_name", nullable = false, updatable = false, length = 50)
     private String name;
-    @Column(nullable = false)
+    @Column(nullable = false, length = 90)
     private String email;
+    @Column(length = 10)
     private String postalCode;
+    @Column(length = 90)
     private String country;
     @ManyToOne
     @JoinColumn(name = "user_role", referencedColumnName = "id", nullable = false)
