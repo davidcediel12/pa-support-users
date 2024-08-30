@@ -17,6 +17,7 @@ public class UserRole {
 
     @Id
     Integer id;
+    @Column(name = "role_name", nullable = false, length = 50)
     private String name;
     @ManyToOne
     @JoinColumn(name = "parent_role", referencedColumnName = "id")
