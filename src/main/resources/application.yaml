@@ -10,7 +10,7 @@ spring:
       show-sql: true
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/gaia-pet
+    url: jdbc:postgresql://localhost:5432/gaia-pet?currentSchema=users
     username: postgres
     password: admin
 server:
