@@ -2,16 +2,15 @@ package com.per.adoption.support.users.model;
 
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @Entity
 @Table(name = "user_role")
 @NoArgsConstructor
 @Getter
 @Setter
+@AllArgsConstructor
+@Builder
 @ToString
 public class UserRole {
 
