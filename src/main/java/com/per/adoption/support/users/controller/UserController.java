@@ -7,11 +7,10 @@ import com.per.adoption.support.users.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.net.URI;
 import java.util.Map;
 
 @RestController
@@ -35,11 +34,8 @@ public class UserController {
 
         CreatedUser createdUser = userService.saveUser(userRequest);
 
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.put(HttpHeaders.LOCATION, List.of(createdUser.getId().toString()));
-
-        return ResponseEntity.ok()
-                .headers(httpHeaders)
+        return ResponseEntity
+                .created(URI.create(createdUser.getId().toString()))
                 .body(createdUser);
     }
 }
