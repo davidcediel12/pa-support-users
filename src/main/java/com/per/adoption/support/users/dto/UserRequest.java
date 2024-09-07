@@ -1,9 +1,12 @@
 package com.per.adoption.support.users.dto;
 
-public record UserRequest(String identityId,
-                          String name,
-                          String email,
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
+
+public record UserRequest(@NotEmpty String identityId,
+                          @NotEmpty String name,
+                          @NotEmpty @Email String email,
                           String country,
-                          String role,
+                          @NotEmpty String role,
                           String postalCode) {
 }

@@ -15,4 +15,8 @@ public class ErrorConstants {
 
     public static final ApiException ROLE_DOES_NOT_EXISTS_EXCEPTION =
             new ApiException(ROLE_DOES_NOT_EXISTS, HttpStatus.BAD_REQUEST);
+
+
+    public static final Error WRONG_PARAMETERS = new Error(
+            "SP-02", "Wrong parameters", List.of());
 }
