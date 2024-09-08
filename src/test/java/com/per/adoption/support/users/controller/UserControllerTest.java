@@ -104,4 +104,28 @@ class UserControllerTest {
     }
 
 
+    @Test
+    void shouldNotSaveUserWhenTheyAlreadyExist() {
+
+        given()
+                .body(USER_REQUEST)
+                .contentType(ContentType.JSON)
+                .when()
+                .post("/users")
+                .then()
+                .statusCode(HttpStatus.CREATED.value());
+
+        // Try to save the same user
+        given()
+                .body(USER_REQUEST)
+                .contentType(ContentType.JSON)
+                .when()
+                .post("/users")
+                .then()
+                .statusCode(HttpStatus.CONFLICT.value());
+
+        assertThat(userRepository.count()).isEqualTo(1);
+    }
+
+
 }
