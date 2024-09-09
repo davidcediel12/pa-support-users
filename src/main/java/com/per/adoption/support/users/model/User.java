@@ -21,9 +21,9 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
-    @Column(nullable = false, updatable = false)
+    @Column(nullable = false, updatable = false, unique = true)
     private UUID userId;
-    @Column(nullable = false, updatable = false)
+    @Column(nullable = false, updatable = false, unique = true)
     private UUID identityId;
     @UpdateTimestamp
     private OffsetDateTime createdAt;
@@ -31,7 +31,7 @@ public class User {
     private OffsetDateTime updatedAt;
     @Column(name = "user_name", nullable = false, updatable = false, length = 50)
     private String name;
-    @Column(nullable = false, length = 90)
+    @Column(nullable = false, length = 90, unique = true)
     private String email;
     @Column(length = 10)
     private String postalCode;

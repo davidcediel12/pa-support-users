@@ -12,6 +12,7 @@ import com.per.adoption.support.users.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import static com.per.adoption.support.users.util.ErrorConstants.ROLE_DOES_NOT_EXISTS_EXCEPTION;
 
@@ -25,6 +26,7 @@ public class UserServiceImpl implements UserService {
     private final UserRoleRepository userRoleRepository;
     private final UserMapper userMapper;
 
+    @Transactional
     @Override
     public CreatedUser saveUser(UserRequest userRequest) {
 
