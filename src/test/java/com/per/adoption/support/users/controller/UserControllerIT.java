@@ -5,6 +5,7 @@ import com.per.adoption.support.users.repository.UserRepository;
 import com.per.adoption.support.users.repository.UserRoleRepository;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
+import io.restassured.response.Response;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -107,24 +108,24 @@ class UserControllerIT {
     @Test
     void shouldNotSaveUserWhenTheyAlreadyExist() {
 
-        given()
-                .body(USER_REQUEST)
-                .contentType(ContentType.JSON)
-                .when()
-                .post("/users")
+        saveUser()
                 .then()
                 .statusCode(HttpStatus.CREATED.value());
 
         // Try to save the same user
-        given()
-                .body(USER_REQUEST)
-                .contentType(ContentType.JSON)
-                .when()
-                .post("/users")
+        saveUser()
                 .then()
                 .statusCode(HttpStatus.CONFLICT.value());
 
         assertThat(userRepository.count()).isEqualTo(1);
+    }
+
+    private static Response saveUser() {
+        return given()
+                .body(USER_REQUEST)
+                .contentType(ContentType.JSON)
+                .when()
+                .post("/users");
     }
 
 
