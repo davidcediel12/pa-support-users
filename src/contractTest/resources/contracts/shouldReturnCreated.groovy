@@ -6,7 +6,7 @@ import org.springframework.http.MediaType
 
 
 Contract.make {
-    description'Should return created status with the uuid in the Location header'
+    description 'Should return created status with the uuid in the Location header'
     request {
         method POST()
         url '/users'
@@ -27,6 +27,10 @@ Contract.make {
         headers {
             header(HttpHeaders.LOCATION, $(producer(regex("/users/*."))))
         }
+        body([
+                id       : $(anyNumber()),
+                createdAt: $(nonEmpty())
+        ])
     }
 }
 
