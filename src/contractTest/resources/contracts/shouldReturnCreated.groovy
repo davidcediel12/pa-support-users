@@ -28,7 +28,7 @@ Contract.make {
             header(HttpHeaders.LOCATION, $(producer(regex("/users/*."))))
         }
         body([
-                id       : $(anyNumber()),
+                id       : 1,
                 createdAt: $(nonEmpty())
         ])
     }
