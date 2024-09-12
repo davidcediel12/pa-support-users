@@ -35,7 +35,7 @@ public class UserController {
         CreatedUser createdUser = userService.saveUser(userRequest);
 
         return ResponseEntity
-                .created(URI.create(createdUser.getId().toString()))
+                .created(URI.create("/users/" + createdUser.getId().toString()))
                 .body(createdUser);
     }
 }
