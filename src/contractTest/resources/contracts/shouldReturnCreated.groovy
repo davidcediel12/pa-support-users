@@ -14,23 +14,23 @@ Contract.make {
             header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
         }
         body([
-                "identityId": "115de516-ae8a-4db5-b63b-969c6696a848",
-                "name"      : "Foundation",
-                "email"     : "user@email.com",
-                "country"   : "Spain",
-                "role"      : "USER",
-                "postalCode": "8798"
+                "identityId": $(producer("115de516-ae8a-4db5-b63b-969c6696a848"), consumer(anyUuid())),
+                "name"      : $(producer("Foundation"), consumer(anyNonBlankString())),
+                "email"     : $(producer("user@email.com"), consumer(anyEmail())),
+                "country"   : $(producer("Spain"), consumer(anyNonBlankString())),
+                "role"      : $(producer("USER"), consumer(anyOf("USER", "FOUNDATION"))),
+                "postalCode": $(producer("8798"), consumer(anyNumber()))
         ])
     }
     response {
         status CREATED()
         headers {
-            header(HttpHeaders.LOCATION, $(producer(regex("/users/*."))))
+            header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+            header(HttpHeaders.LOCATION, '/users/1')
         }
         body([
                 id       : 1,
-                createdAt: $(nonEmpty())
+                createdAt: $(p(nonEmpty()), c("2024-09-13T13:04:38.724359400+02:00"))
         ])
     }
 }
-
