@@ -9,7 +9,28 @@ plugins {
 contracts {
     baseClassForTests = 'com.per.adoption.support.users.contractTest.BaseTestClass'
     testFramework = 'JUnit5'
+
+    publishStubsToScm {
+        // We want to modify the default set up of the plugin when publish stubs to scm is called
+        // We want to pick contracts from a Git repository
+        contractDependency {
+            stringNotation = "${project.group}:${project.name}:${project.version}"
+        }
+        /*
+        We reuse the contract dependency section to set up the path
+        to the folder that contains the contract definitions. In our case the
+        path will be /groupId/artifactId/version/contracts
+         */
+        contractRepository {
+            repositoryUrl = "git://git@github.com:davidcediel12/temp.git"
+        }
+        // We set the contracts mode to `LOCAL`
+        contractsMode = "REMOTE"
+    }
 }
+
+
+
 
 group = 'com.per.adoption'
 version = '0.0.1-SNAPSHOT'
@@ -63,11 +84,24 @@ dependencies {
 }
 
 
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
 publishing {
     publications {
         mavenJava(MavenPublication) {
             artifact bootJar
+
             artifact verifierStubsJar
+
+            // https://github.com/spring-gradle-plugins/dependency-management-plugin/issues/273
             versionMapping {
                 usage("java-api") {
                     fromResolutionOf("runtimeClasspath")
@@ -80,12 +114,5 @@ publishing {
     }
 }
 
-dependencyManagement {
-    imports {
-        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
-    }
-}
 
-tasks.named('test') {
-    useJUnitPlatform()
-}
+publish.dependsOn("publishStubsToScm")
