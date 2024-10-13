@@ -3,6 +3,7 @@ package com.per.adoption.support.users.controller;
 
 import com.per.adoption.support.users.dto.CreatedUser;
 import com.per.adoption.support.users.dto.UserRequest;
+import com.per.adoption.support.users.dto.UserResponse;
 import com.per.adoption.support.users.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -37,5 +38,11 @@ public class UserController {
         return ResponseEntity
                 .created(URI.create("/users/" + createdUser.getId().toString()))
                 .body(createdUser);
+    }
+
+    @GetMapping
+    public ResponseEntity<UserResponse> getUserByClientId(@RequestParam String identityId){
+
+        return ResponseEntity.ok(userService.getUserByIdentityId(identityId));
     }
 }

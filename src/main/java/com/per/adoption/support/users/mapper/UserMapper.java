@@ -2,6 +2,7 @@ package com.per.adoption.support.users.mapper;
 
 import com.per.adoption.support.users.dto.CreatedUser;
 import com.per.adoption.support.users.dto.UserRequest;
+import com.per.adoption.support.users.dto.UserResponse;
 import com.per.adoption.support.users.model.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -20,4 +21,7 @@ public interface UserMapper {
 
 
     CreatedUser entityToResponse(User user);
+
+    @Mapping(target = "role", source = "role.name")
+    UserResponse entityToUserResponse(User user);
 }

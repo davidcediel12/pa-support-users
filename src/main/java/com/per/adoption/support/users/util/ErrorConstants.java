@@ -19,4 +19,12 @@ public class ErrorConstants {
 
     public static final Error WRONG_PARAMETERS = new Error(
             "SP-02", "Wrong parameters", List.of());
+
+
+
+    public static final Error USER_DOES_NOT_EXISTS = new Error(
+            "SP-03", "User doesn't exists", List.of());
+
+    public static final ApiException USER_DOES_NOT_EXISTS_EXCEPTION =
+            new ApiException(USER_DOES_NOT_EXISTS, HttpStatus.NOT_FOUND);
 }
