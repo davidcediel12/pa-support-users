@@ -16,9 +16,6 @@ spring:
     url: jdbc:postgresql://localhost:5432/gaia-pet
     username: postgres
     password: admin
-server:
-  port: 8081
-
 logging:
   level:
     org.hibernate.SQL: DEBUG
