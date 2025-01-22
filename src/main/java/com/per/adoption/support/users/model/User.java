@@ -9,7 +9,7 @@ import java.time.OffsetDateTime;
 import java.util.UUID;
 
 @Entity
-@Table(name = "users")
+@Table(name = "users", schema = "users")
 @NoArgsConstructor
 @Getter
 @Setter
@@ -23,7 +23,7 @@ public class User {
     private Integer id;
     @Column(nullable = false, updatable = false, unique = true)
     private UUID userId;
-    @Column(nullable = false, updatable = false, unique = true)
+    @Column(nullable = false, updatable = false)
     private UUID identityId;
     @UpdateTimestamp
     private OffsetDateTime createdAt;

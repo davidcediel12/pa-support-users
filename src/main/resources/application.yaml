@@ -1,6 +1,9 @@
 spring:
   application:
     name: support.users
+  sql:
+    init:
+      mode: always
   jpa:
     hibernate:
       ddl-auto: validate
@@ -10,7 +13,7 @@ spring:
       show-sql: true
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/gaia-pet?currentSchema=users
+    url: jdbc:postgresql://localhost:5432/gaia-pet
     username: postgres
     password: admin
 server:
