@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS users.USER_ROLE
     role_name   varchar(50) UNIQUE,
     parent_role int,
     CONSTRAINT fk_user_role FOREIGN KEY (parent_role)
-        REFERENCES USER_ROLE (id) ON DELETE CASCADE
+        REFERENCES users.USER_ROLE (id) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS users.USERS
@@ -23,5 +23,5 @@ CREATE TABLE IF NOT EXISTS users.USERS
     country     varchar(90),
     user_role   int,
     CONSTRAINT fk_user_role FOREIGN KEY (user_role)
-        REFERENCES user_role (id) ON DELETE SET NULL
+        REFERENCES users.USER_ROLE (id) ON DELETE SET NULL
 );
