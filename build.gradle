@@ -32,7 +32,7 @@ contracts {
 
 
 
-group = 'com.per.adoption'
+group = 'com.pet.adoption'
 version = '0.0.1-SNAPSHOT'
 
 java {
