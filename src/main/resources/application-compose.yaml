@@ -3,4 +3,4 @@ spring:
     url: jdbc:postgresql://postgres:5432/gaia-pet
 
 server:
-  port: 8081
+  port: 8080
