@@ -29,7 +29,7 @@ public class UserControllerAdvice {
     @ExceptionHandler(DataIntegrityViolationException.class)
     private ResponseEntity<Error> handleDataIntegrityViolation(final DataIntegrityViolationException e) {
 
-        log.error("Error while interacting with the database {}", e.getMessage());
+        log.error("Error while interacting with the database", e);
 
         String errorMessage;
         Pattern pattern = Pattern.compile("\\([^)]*\\)");
