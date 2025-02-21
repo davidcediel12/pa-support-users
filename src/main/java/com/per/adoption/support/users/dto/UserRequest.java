@@ -10,10 +10,12 @@ public record UserRequest(@NotEmpty String identityId,
                           @NotEmpty @Email String email,
                           String country,
                           @NotEmpty String role,
-                          String postalCode) {
+                          String postalCode,
+                          @NotEmpty String issuerName,
+                          @NotEmpty String issuerId) {
 
     public UserRequest withRole(String role) {
-        return new UserRequest(identityId, name, email, country, role, postalCode);
+        return new UserRequest(identityId, name, email, country, role, postalCode, issuerName, issuerId);
     }
 
 }

@@ -2,6 +2,7 @@ package com.per.adoption.support.users.controller;
 
 import com.per.adoption.support.users.config.PostgresContainerInitializer;
 import com.per.adoption.support.users.dto.UserRequest;
+import com.per.adoption.support.users.model.User;
 import com.per.adoption.support.users.repository.UserRepository;
 import com.per.adoption.support.users.repository.UserRoleRepository;
 import io.restassured.RestAssured;
@@ -18,6 +19,7 @@ import org.springframework.http.HttpStatus;
 import static com.per.adoption.support.users.util.Constants.USER_REQUEST;
 import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -79,6 +81,26 @@ class UserControllerIT implements PostgresContainerInitializer {
 
         assertNotNull(response.headers().get(HttpHeaders.LOCATION));
         assertThat(userRepository.count()).isEqualTo(1);
+    }
+
+    @Test
+    void shouldSaveUserIssuer() {
+        var response = given()
+                .body(USER_REQUEST)
+                .contentType(ContentType.JSON)
+                .when()
+                .post("/users")
+                .then()
+                .statusCode(HttpStatus.CREATED.value())
+                .extract().response();
+
+        assertNotNull(response.headers().get(HttpHeaders.LOCATION));
+        assertThat(userRepository.count()).isEqualTo(1);
+
+        User user = userRepository.findAll().getFirst();
+
+        assertEquals(USER_REQUEST.issuerName(), user.getIssuer().getName());
+        assertEquals(USER_REQUEST.issuerId(), user.getIssuer().getId());
     }
 
 

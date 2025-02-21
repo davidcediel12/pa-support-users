@@ -41,4 +41,8 @@ public class User {
     @JoinColumn(name = "user_role", referencedColumnName = "id", nullable = false)
     private UserRole role;
 
+    @Embedded
+    @AttributeOverride(name = "id", column = @Column(name = "issuer_id"))
+    @AttributeOverride(name = "name", column = @Column(name = "issuer_name"))
+    private Issuer issuer;
 }

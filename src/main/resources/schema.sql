@@ -18,6 +18,8 @@ CREATE TABLE IF NOT EXISTS users.USERS
     created_at  TIMESTAMPTZ NOT NULL,
     updated_at  TIMESTAMPTZ NOT NULL,
     user_name   varchar(50) UNIQUE,
+    issuer_name varchar(90),
+    issuer_id   varchar(90) UNIQUE,
     email       varchar(90) UNIQUE,
     postal_code varchar(10),
     country     varchar(90),
