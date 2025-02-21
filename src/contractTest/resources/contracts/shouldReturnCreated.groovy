@@ -20,7 +20,8 @@ Contract.make {
                 "country"   : $(producer("Spain"), consumer(anyNonBlankString())),
                 "role"      : $(producer("USER"), consumer(anyOf("USER", "FOUNDATION"))),
                 "postalCode": $(producer("8798"), consumer(anyNumber())),
-                "issuerName": $(producer("google"), consumer(anyNonBlankString()))
+                "issuerName": $(producer("google"), consumer(anyNonBlankString())),
+                "issuerId": $(producer("google123"), consumer(anyNonBlankString()))
         ])
     }
     response {
