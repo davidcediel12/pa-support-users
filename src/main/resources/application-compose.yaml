@@ -1,6 +1,14 @@
 spring:
   datasource:
     url: jdbc:postgresql://postgres:5432/gaia-pet
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+logging:
+  level:
+    org.hibernate.SQL: INFO
+    org.hibernate.type.descriptor.sql.BasicBinder: INFO
 
 server:
   port: 8080
