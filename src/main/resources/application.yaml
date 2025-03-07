@@ -8,7 +8,7 @@ spring:
       mode: always
   jpa:
     hibernate:
-      ddl-auto: validate
+      ddl-auto: update
     properties:
       dialect: org.hibernate.dialect.PostgreSQLDialect
       format_sql: true
@@ -25,6 +25,16 @@ logging:
   level:
     org.hibernate.SQL: DEBUG
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,loggers
+  endpoint:
+    health:
+      probes:
+        enabled: true
 
 server:
   port: 8081

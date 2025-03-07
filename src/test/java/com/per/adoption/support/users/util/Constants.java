@@ -1,6 +1,7 @@
 package com.per.adoption.support.users.util;
 
 import com.per.adoption.support.users.dto.UserRequest;
+import com.per.adoption.support.users.model.Issuer;
 import com.per.adoption.support.users.model.User;
 import com.per.adoption.support.users.model.UserRole;
 
@@ -16,7 +17,8 @@ public class Constants {
 
     public static final UserRequest USER_REQUEST = new UserRequest(
             "115de516-ae8a-4db5-b63b-969c6696a848",
-            "USER123", "user@gmail.com", "Spain", USER_ROLE_NAME, "2092");
+            "USER123", "user@gmail.com", "Spain", USER_ROLE_NAME, "2092",
+            "google", "123a");
 
 
     public static final User USER = User.builder()
@@ -26,5 +28,9 @@ public class Constants {
             .identityId(UUID.fromString("3fe8f3a0-68c4-483c-8789-538c8c1776fe"))
             .postalCode("2092")
             .name("USER123")
+            .issuer(Issuer.builder()
+                    .name("google")
+                    .id("123a")
+                    .build())
             .build();
 }

@@ -40,7 +40,7 @@ public abstract class BaseTestClass {
 
         User user = new User(1, USER.getUserId(), USER.getIdentityId(),
                 OffsetDateTime.now(), OffsetDateTime.now(), USER.getName(), USER.getEmail(),
-                USER.getPostalCode(), USER.getCountry(), USER_ROLE);
+                USER.getPostalCode(), USER.getCountry(), USER_ROLE, USER.getIssuer());
 
         when(userRepository.save(any())).thenReturn(user);
         when(userRoleRepository.findByName(anyString())).thenReturn(Optional.of(USER_ROLE));

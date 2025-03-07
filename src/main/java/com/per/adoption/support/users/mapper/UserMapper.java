@@ -17,6 +17,8 @@ public interface UserMapper {
     @Mapping(target = "updatedAt", ignore = true)
     @Mapping(target = "role", ignore = true)
     @Mapping(target = "userId", expression = "java(UUID.randomUUID())")
+    @Mapping(target = "issuer.name", source = "issuerName")
+    @Mapping(target = "issuer.id", source = "issuerId")
     User requestToEntity(UserRequest userRequest);
 
 
