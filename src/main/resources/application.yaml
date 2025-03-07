@@ -26,5 +26,15 @@ logging:
     org.hibernate.SQL: DEBUG
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,loggers
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
 server:
   port: 8081
